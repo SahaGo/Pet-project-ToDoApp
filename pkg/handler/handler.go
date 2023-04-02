@@ -1,14 +1,14 @@
-package handler
+package handler // имплементируем наши хендлеры
 
 import "github.com/gin-gonic/gin"
 
 type Handler struct {
 }
 
-func (h *Handler) InitRoutes() *gin.Engine {
+func (h *Handler) InitRoutes() *gin.Engine { // инициализирует все наши эндпоинты
 	router := gin.New()
 
-	auth := router.Group("/auth")
+	auth := router.Group("/auth") // объявим методы, сгруппировав их по маршрутам
 	{
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
@@ -20,7 +20,7 @@ func (h *Handler) InitRoutes() *gin.Engine {
 		{
 			lists.POST("/", h.createList)
 			lists.GET("/", h.getAllLists)
-			lists.GET("/:id", h.getListById)
+			lists.GET("/:id", h.getListById) // используя двоеточие в марруте эндпоинта, мы указываем, что тут может быть любое значение, которому мы можем обратиться, при помощи по имени параметра id, это фишка библиотеки гин(джин)
 			lists.DELETE("/:id", h.deleteList)
 
 			items := lists.Group(":id")

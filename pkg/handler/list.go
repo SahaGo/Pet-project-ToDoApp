@@ -1,4 +1,4 @@
-package handler
+package handler // эндпоинты для работы со списками
 
 import (
 	"github.com/gin-gonic/gin"

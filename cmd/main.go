@@ -1,4 +1,4 @@
-package main
+package main // отвечает за запуск програаммы
 
 import (
 	Pet_project_ToDoApp "Pet-project-ToDoApp"
@@ -10,8 +10,8 @@ import (
 
 func main() {
 	handlers := new(handler.Handler)
-	srv := new(Pet_project_ToDoApp.Server)
-	if err := srv.Run("8000", handlers.InitRoutes()); err != nil {
+	srv := new(Pet_project_ToDoApp.Server)                         // инициализируем экземпляр сервера с помощью ключевого слова
+	if err := srv.Run("8000", handlers.InitRoutes()); err != nil { // запустим сервер
 		log.Fatalf("error occured while running http server: %s", err.Error())
 	}
 }
