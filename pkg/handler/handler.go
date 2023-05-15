@@ -1,8 +1,17 @@
 package handler // имплементируем наши хендлеры
 
-import "github.com/gin-gonic/gin"
+import (
+	"Pet-project-ToDoApp/pkg/service"
+	"github.com/gin-gonic/gin"
+)
 
-type Handler struct {
+type Handler struct { //внедряем зависимости
+	services *service.Service
+}
+
+func NewHandler(services *service.Service) *Handler { //эту функцию сделали через генератор
+
+	return &Handler{services: services}
 }
 
 func (h *Handler) InitRoutes() *gin.Engine { // инициализирует все наши эндпоинты

@@ -6,3 +6,7 @@
 
 Во 2 уроке составлена структура приложения, подключены библиотеки автора и GIN, функция запуска веб-сервера,добавлены хендлеры и эндпоиты, структуры todo, user.
 В процессе компиляции возникла ошибка `unix/syscall_darwin.1_13.go:25:3: //go:linkname must refer to declared function or variable`, удалось ее [исправить](https://stackoverflow.com/questions/71507321/go-1-18-build-error-on-mac-unix-syscall-darwin-1-13-go253-golinkname-mus).
+
+Пройдена пара уроков, корректное описание обновится позже.
+
+коротко - установлен фрейм migrate go, дефолтно устанавливается migrate python, изучены миграции, чтение из пакета config.yml, сокрытие пароля в .env и тд
