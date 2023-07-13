@@ -41,7 +41,7 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	srv := new(Pet_project_ToDoApp.Server)                                          // инициализируем экземпляр сервера с помощью ключевого слова
+	srv := new(Pet_project_ToDoApp.Server)
 	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil { // запустим сервер //viper key испровить ошибку
 		logrus.Fatalf("error occured while running http server: %s", err.Error())
 	}

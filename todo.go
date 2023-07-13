@@ -1,4 +1,4 @@
-package Pet_project_ToDoApp // файл с описанием структуры и сущностей
+package Pet_project_ToDoApp
 
 type TodoList struct {
 	Id          int    `json:"id"`
