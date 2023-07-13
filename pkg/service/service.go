@@ -1,8 +1,12 @@
 package service
 
-import "Pet-project-ToDoApp/pkg/repository"
+import (
+	todo "Pet-project-ToDoApp"
+	"Pet-project-ToDoApp/pkg/repository"
+)
 
 type Authorization interface {
+	CreateUser(user todo.User) (int, error)
 }
 
 type TodoList interface {

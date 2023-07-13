@@ -1,8 +1,12 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	todo "Pet-project-ToDoApp"
+	"github.com/jmoiron/sqlx"
+)
 
 type Authorization interface {
+	CreateUser(user todo.User) (int, error)
 }
 
 type TodoList interface {
