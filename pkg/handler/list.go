@@ -7,9 +7,8 @@ import (
 )
 
 func (h *Handler) createList(c *gin.Context) {
-	id, ok := c.Get(userCtx)
-	if !ok {
-		newErrorResponse(c, http.StatusInternalServerError, "user id not found")
+	userId, err := getUserId(c)
+	if err != nil {
 		return
 	}
 
@@ -18,7 +17,16 @@ func (h *Handler) createList(c *gin.Context) {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return
 	}
-	//call service method
+
+	id, err := h.services.TodoList.Create(userId, input)
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]interface{}{
+		"id": id,
+	})
 }
 
 func (h *Handler) getAllLists(c *gin.Context) {
