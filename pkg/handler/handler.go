@@ -30,9 +30,10 @@ func (h *Handler) InitRoutes() *gin.Engine { // инициализирует в�
 			lists.POST("/", h.createList)
 			lists.GET("/", h.getAllLists)
 			lists.GET("/:id", h.getListById) // используя двоеточие в марруте эндпоинта, мы указываем, что тут может быть любое значение, которому мы можем обратиться, при помощи по имени параметра id, это фишка библиотеки гин(джин)
+			lists.PUT("/:id", h.updateList)
 			lists.DELETE("/:id", h.deleteList)
 
-			items := lists.Group(":id")
+			items := lists.Group(":id/items")
 			{
 				items.POST("/", h.createItem)
 				items.GET("/", h.getAllItems)
