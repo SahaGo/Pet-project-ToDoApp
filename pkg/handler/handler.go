@@ -1,23 +1,27 @@
-package handler // имплементируем наши хендлеры
+package handler
 
 import (
 	"Pet-project-ToDoApp/pkg/service"
 	"github.com/gin-gonic/gin"
+
+	_ "Pet-project-ToDoApp/docs"
+	"github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
 )
 
-type Handler struct { //внедряем зависимости
+type Handler struct {
 	services *service.Service
 }
 
-func NewHandler(services *service.Service) *Handler { //эту функцию сделали через генератор
+func NewHandler(services *service.Service) *Handler {
 
 	return &Handler{services: services}
 }
 
-func (h *Handler) InitRoutes() *gin.Engine { // инициализирует все наши эндпоинты
+func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
-	auth := router.Group("/auth") // объявим методы, сгруппировав их по маршрутам
+	auth := router.Group("/auth")
 	{
 		auth.POST("/sign-up", h.signUp)
 		auth.POST("/sign-in", h.signIn)
@@ -29,7 +33,7 @@ func (h *Handler) InitRoutes() *gin.Engine { // инициализирует в�
 		{
 			lists.POST("/", h.createList)
 			lists.GET("/", h.getAllLists)
-			lists.GET("/:id", h.getListById) // используя двоеточие в марруте эндпоинта, мы указываем, что тут может быть любое значение, которому мы можем обратиться, при помощи по имени параметра id, это фишка библиотеки гин(джин)
+			lists.GET("/:id", h.getListById)
 			lists.PUT("/:id", h.updateList)
 			lists.DELETE("/:id", h.deleteList)
 
@@ -47,5 +51,8 @@ func (h *Handler) InitRoutes() *gin.Engine { // инициализирует в�
 			items.DELETE("/:id", h.deleteItem)
 		}
 	}
+
+	router.GET("swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
 	return router
 }
